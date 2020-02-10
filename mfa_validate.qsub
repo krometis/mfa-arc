@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=48:00:00
+#PBS -q normal_q
+#PBS -A p2fa_test
+#PBS -W group_list=newriver
+#PBS -M katcarm@vt.edu
+#PBS -m ea
+
+#change to working directory
+[[ ! -z $PBS_O_WORKDIR ]] && cd $PBS_O_WORKDIR
+
+module purge; module load gcc openblas/0.2.20 python/3.5.0 sox kaldi phonetisaurus opengrm-ngram mfa
+
+export OPENBLAS_NUM_THREADS=$PBS_NP
+
+logfile=$( pwd )/mfa_validate.log
+> $logfile
+
+corpus="corpus"
+dict="dict/librispeech-lexicon.txt"
+config="config_long.yml"
+
+echo "LOG: $( date ): Start mfa_validate_dataset"   | tee -a $logfile
+
+#run validate
+mfa_validate_dataset --config_path=$config $corpus $dict english          | tee -a $logfile
+
+#collect the oovs into the validate directory
+mkdir -p validate
+cp $HOME/Documents/MFA/$corpus/corpus_data/*oov*.txt validate/
+
+echo "LOG: $( date ): End mfa_validate_dataset"     | tee -a $logfile
+
+#echo "LOG: $( date ): Start mfa_align"                           | tee -a $logfile
+#mfa_align --config_path=$config -c $corpus $dict english aligned | tee -a $logfile
+#echo "LOG: $( date ): End mfa_align"                             | tee -a $logfile
+#
+#echo "LOG: $( date ): Start mfa_train_and_align"    | tee -a $logfile
+#mfa_train_and_align -c $corpus $dict tr_and_ali     | tee -a $logfile
+#echo "LOG: $( date ): End mfa_train_and_align"      | tee -a $logfile
+

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#PBS -l nodes=1:ppn=4
+#PBS -l walltime=24:00:00
+#PBS -q normal_q
+#PBS -A p2fa_test
+#PBS -W group_list=newriver
+#PBS -M katcarm@vt.edu
+#PBS -m ea
+#PBS -j oe
+
+#change to working directory
+[[ ! -z $PBS_O_WORKDIR ]] && cd $PBS_O_WORKDIR
+
+module purge; module load gcc openblas/0.2.20 python/3.5.0 sox kaldi phonetisaurus opengrm-ngram mfa
+
+export OPENBLAS_NUM_THREADS=$PBS_NP
+
+logfile=$( pwd )/mfa_align.log
+> $logfile
+
+corpus="corpus"
+dict="dict/librispeech-lexicon.txt"
+config="config_long.yml"
+
+echo "LOG: $( date ): Start mfa_align"                           | tee -a $logfile
+
+#run the alignment
+mfa_align --config_path=$config -c $corpus $dict english aligned | tee -a $logfile
+
+#print some useful information at the end
+echo "Contents of corpus/align/log/align.final.0.log:"           | tee -a $logfile
+cat $HOME/Documents/MFA/$corpus/align/log/align.final.0.log      | tee -a $logfile
+echo "Unaligned files:"                                          | tee -a $logfile
+cat aligned/unaligned.txt                                        | tee -a $logfile
+
+echo "LOG: $( date ): End mfa_align"                             | tee -a $logfile
+
