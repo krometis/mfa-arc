@@ -20,12 +20,11 @@ logfile=$( pwd )/mfa_validate.log
 
 corpus="corpus"
 dict="dict/librispeech-lexicon.txt"
-config="config_long.yml"
 
 echo "LOG: $( date ): Start mfa_validate_dataset"   | tee -a $logfile
 
 #run validate
-mfa_validate_dataset --config_path=$config $corpus $dict english          | tee -a $logfile
+mfa_validate_dataset $corpus $dict english          | tee -a $logfile
 
 #collect the oovs into the validate directory
 mkdir -p validate
