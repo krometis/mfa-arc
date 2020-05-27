@@ -1,14 +1,30 @@
 #!/bin/bash
+#script to 
+# 1) copy files from mfa's oov location to a more permanent location
+# 2) identify the locations of oovs in the corpus
 
-#oovfl="$HOME/Documents/MFA/corpus/corpus_data/oovs_found.txt"
-oovfl="validate/oovs_found.txt"
 corpus="corpus"
-outfile="validate/oov_location.txt"
+mfadir="$HOME/Documents/MFA/$corpus/corpus_data"
+finaldir="validate"
+oovfl="oovs_found.txt"
+outfile="oov_location.txt"
 
-> $outfile
-oovs="$( cat $oovfl )"
+
+#copy files from mfadir to finaldir
+echo "copying oov files from $mfadir to $finaldir"
+cp $mfadir/*oov*.txt $finaldir/
+echo "oov files are:"
+ls -lh $finaldir/*oov*.txt | grep -v $outfile
+
+
+#find the locations of each oov in the corpus
+echo "finding oov locations in the corpus $corpus"
+> $finaldir/$outfile
+oovs="$( cat $finaldir/$oovfl )"
 
 for oov in $oovs; do
-  echo "$oov:" | tee -a $outfile
-  grep -i -l $oov $corpus/*.txt | sed 's/^/  /' | tee -a $outfile
+  echo "$oov:" | tee -a $finaldir/$outfile
+  #grep -i -l $oov $corpus/*.{txt,TextGrid} | sed 's/^/  /' | tee -a $finaldir/$outfile
+  grep -i -l $oov $corpus/*.txt | sed 's/^/  /' | tee -a $finaldir/$outfile
 done
+
