@@ -34,3 +34,6 @@ module load tinkercliffs-rome/kaldi/20210429-foss-2020b
 mfa thirdparty kaldi $EBROOTKALDI
 mfa thirdparty validate
 
+#download the english language model
+#https://montreal-forced-aligner.readthedocs.io/en/latest/pretrained_models.html#pretrained-acoustic
+mfa download acoustic english
