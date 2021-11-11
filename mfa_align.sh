@@ -30,7 +30,7 @@ config="config_long.yml"
 echo "LOG: $( date ): Start mfa align"                           | tee -a $logfile
 
 #run the alignment
-mfa align --config_path=$config -c $corpus $dict english aligned | tee -a $logfile
+mfa align --config_path=$config --clean $corpus $dict english aligned | tee -a $logfile
 
 #print some useful information at the end
 echo "Contents of corpus/align/log/align.final.0.log:"           | tee -a $logfile
