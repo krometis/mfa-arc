@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -N 1 --tasks-per-node=4
+#SBATCH -N 1 --tasks-per-node=8 #8 because we sometimes need more memory
 #SBATCH -t 24:00:00
 #SBATCH -p normal_q
 #SBATCH -A katcarm_lab
