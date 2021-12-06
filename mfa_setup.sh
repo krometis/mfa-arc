@@ -19,7 +19,7 @@ conda config --prepend pkgs_dirs $HOME/.conda/pkgs
 #source conda_setup.sh -- just do source activate below
 
 #create the aligner environment -- changing from python 3.8 to 3.9 as per the developer
-conda create -n aligner -c conda-forge openblas python=3.8 openfst pynini ngram baumwelch pip
+conda create -n aligner -c conda-forge openblas python=3.9 openfst pynini ngram baumwelch pip
 
 #activate the aligner environment
 #conda activate aligner
