@@ -14,11 +14,11 @@ module load tinkercliffs-rome/kaldi/20210429-foss-2020b
 
 export OPENBLAS_NUM_THREADS=$SLURM_NTASKS
 
-#(mimic) initialize conda
-source conda_setup.sh
+#(mimic) initialize conda -- use source below instead
+# source conda_setup.sh
 
 #activate the mfa environment
-conda activate aligner
+source activate aligner
 
 logfile=$( pwd )/mfa_validate.log
 > $logfile
