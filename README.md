@@ -3,7 +3,7 @@ Scripts and directory structure to run the [Montreal Forced Aligner](http://mont
 
 Download these files:
 ```
-git clone git@github.com:krometis/mfa-arc.git
+git clone https://github.com/krometis/mfa-arc.git
 cd mfa-arc
 ```
 One-time setup to create the conda environment, install MFA, and tie in with Kaldi:
