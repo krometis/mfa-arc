@@ -16,13 +16,14 @@ conda config --prepend pkgs_dirs $HOME/.conda/pkgs
 #source ~/.bashrc
 
 #(mimic) initialize conda
-source conda_setup.sh
+#source conda_setup.sh -- just do source activate below
 
-#create the aligner environment
+#create the aligner environment -- changing from python 3.8 to 3.9 as per the developer
 conda create -n aligner -c conda-forge openblas python=3.8 openfst pynini ngram baumwelch pip
 
 #activate the aligner environment
-conda activate aligner
+#conda activate aligner
+source activate aligner
 
 #install mfa inside the aligner environment
 pip install montreal-forced-aligner
