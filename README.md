@@ -1,9 +1,11 @@
 # mfa-arc
 Scripts and directory structure to run the [Montreal Forced Aligner](http://montreal-forced-aligner.readthedocs.io) on HPC infrastructure at Virginia Tech (https://www.arc.vt.edu)
 
+## this project was forked from <https://github.com/krometis/mfa-arc.git>
+
 Download these files:
 ```
-git clone https://github.com/krometis/mfa-arc.git
+git clone git@github.com:rsettlage/mfa-arc.git
 cd mfa-arc
 ```
 One-time setup to create the conda environment, install MFA, and tie in with Kaldi:
