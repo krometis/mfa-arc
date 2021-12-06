@@ -18,11 +18,12 @@ export njobs=$(( $SLURM_NTASKS/2 ))
 export OPENBLAS_NUM_THREADS=2
 export OMP_NUM_THREADS=2
 
-#(mimic) initialize conda
-source conda_setup.sh
+#(mimic) initialize conda -- don't do, use source below
+# source conda_setup.sh
 
 #activate the mfa environment
-conda activate aligner
+#conda activate aligner
+source activate aligner
 
 logfile=$( pwd )/mfa_align.log
 > $logfile
