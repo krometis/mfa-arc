@@ -31,10 +31,11 @@ pip install montreal-forced-aligner
 #load kaldi
 module load tinkercliffs-rome/kaldi/20210429-foss-2020b
 
-#tell mfa where kaldi is
+#tell mfa where kaldi is -- think these are deprecated as per the error message
 mfa thirdparty kaldi $EBROOTKALDI
 mfa thirdparty validate
 
-#download the english language model
+#download the english language model -- changed the command
 #https://montreal-forced-aligner.readthedocs.io/en/latest/pretrained_models.html#pretrained-acoustic
-mfa download acoustic english
+#mfa download acoustic english
+mfa model download acoustic english
