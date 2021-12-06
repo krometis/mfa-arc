@@ -16,8 +16,6 @@ fi
 #if corpus contains wav files, check their sampling rates
 wavfiles=$( find $corpus -name '*.wav' -type f )
 if [ -n "$wavfiles" ]; then 
-  module load gcc sox
-
   echo "wav file sampling rates are: (these should all match)"
   #loop across files and print the sample rate for each
   for fl in $( ls $corpus/*.wav ); do 
